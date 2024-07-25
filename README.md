@@ -11,7 +11,8 @@ erDiagram
     Person ||--o{ Movie : "directs"
     Person ||--o{ MovieCharacter : "acts in"
     Movie ||--o{ MovieCharacter : "has"
-    Movie }o--o{ Genre : "belongs to"
+    Movie ||--o{ MovieGenre : "has"
+    Genre ||--o{ MovieGenre : "belongs to"
     Character ||--o{ MovieCharacter : "is portrayed in"
     Person ||--o{ PersonPhotos : "has"
     File ||--o{ PersonPhotos : "is used in"
@@ -80,6 +81,11 @@ erDiagram
         int CharacterID FK
         int ActorID FK
         enum Role
+    }
+
+    MovieGenre {
+        int MovieID FK
+        int GenreID FK
     }
 
     FavoriteMovies {
