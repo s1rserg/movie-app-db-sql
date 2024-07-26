@@ -10,6 +10,7 @@ erDiagram
     User ||--o{ FavoriteMovies : "has"
     Person ||--o{ Movie : "directs"
     Person ||--o{ MovieCharacter : "acts in"
+    Movie ||--o{ FavoriteMovies : "is favorite of"
     Movie ||--o{ MovieCharacter : "has"
     Movie ||--o{ MovieGenre : "has"
     Genre ||--o{ MovieGenre : "belongs to"
