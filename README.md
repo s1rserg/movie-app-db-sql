@@ -19,60 +19,74 @@ erDiagram
 
     Country {
         int CountryID PK
-        string CountryName
-        string ISOCode
+        varchar(100) CountryName
+        char(2) ISOCode
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     File {
         int FileID PK
-        string FileName
-        string MIMEType
-        string Key
-        string URL
+        varchar(100) FileName
+        varchar(50) MIMEType
+        varchar(255) Key
+        varchar(255) URL
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     User {
         int UserID PK
-        string Username
-        string FirstName
-        string LastName
-        string Email
-        string Password
+        varchar(50) Username
+        varchar(50) FirstName
+        varchar(50) LastName
+        varchar(255) Email
+        varchar(255) Password
         int AvatarFileID FK
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     Person {
         int PersonID PK
-        string FirstName
-        string LastName
+        varchar(50) FirstName
+        varchar(50) LastName
         text Biography
         date DateOfBirth
         enum Gender
         int CountryID FK
         int PrimaryPhotoFileID FK
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     Movie {
         int MovieID PK
-        string Title
+        varchar(100) Title
         text Description
         decimal Budget
         date ReleaseDate
-        int Duration
+        smallint Duration
         int DirectorID FK
         int CountryID FK
         int PosterFileID FK
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     Genre {
         int GenreID PK
-        string GenreName
+        varchar(50) GenreName
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     Character {
         int CharacterID PK
-        string Name
+        varchar(100) Name
         text Description
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     MovieCharacter {
@@ -81,25 +95,32 @@ erDiagram
         int CharacterID FK
         int ActorID FK
         enum Role
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     MovieGenre {
         int MovieID FK
         int GenreID FK
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     FavoriteMovies {
         int UserID FK
         int MovieID FK
+        timestamp createdAt
+        timestamp updatedAt
     }
 
     PersonPhotos {
         int PersonID FK
         int FileID FK
+        timestamp createdAt
+        timestamp updatedAt
     }
 ```
 
 ## Notes
 
-* Common CreatedAt & UpdatedAt timestamps are present in all sql tables
 * Role attribute is in CharacterMovies table. It makes more sense for this schema to put it in here, rather than in Character table: in one movie a character can play leading role and in another play supporting role. So by doing this, I can avoid creating duplicate characters with different role values.
